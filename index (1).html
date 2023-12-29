@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>抽獎網站</title>
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
+    </head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      .first {
+        width: 300px;
+        height: 300px;
+        background: #000;
+      }
+      .first.show {
+        height: 800px;
+        width: 600px;
+      }
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+      .d-none {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" onclick="startLottery()">
+      <h1 id="first_text">歡迎來到這裡</h1>
+      <figure class="first" id="showBox">
+        <img src="./images/1.png" id="lottery-image" alt="" />
+      </figure>
+      <h3 class="d-none" id="result-text"></h3>
+    </div>
+  </body>
+  <script>
+    let firstCheck = true;
+    function startLottery() {
+      if (firstCheck) {
+        const resultText = document.getElementById("result-text");
+        const lotteryImage = document.getElementById("lottery-image");
+        const firstText = document.getElementById("first_text");
+        const showBox = document.getElementById("showBox");
+        firstText.classList.add("d-none");
+        resultText.classList.remove("d-none");
+        showBox.classList.add("show");
+
+        // 添加animate__bounceOut类，使当前图像消失
+        lotteryImage.classList.add("animate__animated", "animate__bounceOut");
+
+        // 在动画结束后执行的回调函数
+        lotteryImage.addEventListener("animationend", () => {
+          // 移除animate__bounceOut类
+          lotteryImage.classList.remove("animate__bounceOut");
+
+          // 随机生成新的图像和文字
+          const randomImgIndex = Math.floor(Math.random() * images.length);
+          // const randomTextIndex = Math.floor(Math.random() * texts.length);
+          const randomImage = images[randomImgIndex];
+          // const randomText = texts[randomTextIndex];
+
+          // 更新页面元素
+          // resultText.innerText = `${randomText}`;
+          lotteryImage.src = `/images/${randomImage}`;
+
+          // 添加animate__bounceIn类，使新图像出现
+          // lotteryImage.classList.add("animate__animated", "animate__bounceIn");
+        });
+
+        firstCheck = false;
+      }
+
+      // 添加animationend事件监听器，确保在动画结束后执行回调
+    }
+
+    // 示範的圖片和文字 array，你可以替換成自己的資料
+    const images = ["1.png", "2.png", "3.jpg"];
+    const texts = [
+      "文字1",
+      "文字2",
+      "文字3",
+      "文字4",
+      "文字5",
+      "文字6",
+      "文字7",
+      "文字8",
+      "獎品9",
+      "獎品10",
+    ];
+  </script>
+</html>
