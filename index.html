@@ -76,12 +76,12 @@
           // 随机生成新的图像和文字
           const randomImgIndex = Math.floor(Math.random() * images.length);
           // const randomTextIndex = Math.floor(Math.random() * texts.length);
-          const randomImage = images[randomImgIndex];
+          const randomImage = image[randomImgIndex];
           // const randomText = texts[randomTextIndex];
 
           // 更新页面元素
           // resultText.innerText = `${randomText}`;
-          lotteryImage.src = `/images/${randomImage}`;
+          lotteryImage.src = `/image/${randomImage}`;
 
           // 添加animate__bounceIn类，使新图像出现
           // lotteryImage.classList.add("animate__animated", "animate__bounceIn");
